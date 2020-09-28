@@ -20,10 +20,12 @@ namespace SnakeAndLadder
             {
                 currentPosition[item] = 0;
             }
+            int playersCount = 0;
             Random random = new Random();
-            do
-            {
-                for (int playersCount = 0; playersCount < noOfPlayers; playersCount++)
+            //do
+            //{
+                //for (int playersCount = 0; playersCount < noOfPlayers; playersCount++)
+                while(currentPosition[playersCount]<winningPosition)
                 {
                     do
                     {
@@ -62,8 +64,13 @@ namespace SnakeAndLadder
                             break;
                         }
                     } while (checkingThePosition == LADDER);
-                }
-            } while (currentPosition[0] < winningPosition && currentPosition[1]< winningPosition);
+                if (playersCount < noOfPlayers - 1)
+                    playersCount += 1;
+                else
+                    playersCount = 0;
+            }
+            
+            }
+            } //while (currentPosition[0] < winningPosition && currentPosition[1]< winningPosition);
         }
-    }
-}
+    
