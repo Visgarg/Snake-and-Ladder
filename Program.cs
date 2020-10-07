@@ -31,17 +31,18 @@ namespace SnakeAndLadder
                     {
                         int RollingDieNumber = random.Next(1, 7);
                         checkingThePosition = random.Next(1, 4);
-                        switch (checkingThePosition)
+                        if (currentPosition[playersCount] + RollingDieNumber > winningPosition)
+                            {
+                                Console.WriteLine($"no is getting greater than 100 for player {playersCount + 1}");
+                        Console.WriteLine($"Current Position of {playersCount + 1} Player:{currentPosition[playersCount]},iteration no. {iterationNo}");
+                        iterationNo++;
+                        break;
+                            }
+                    switch (checkingThePosition)
                         {
                             case LADDER:
-                                if (currentPosition[playersCount] + RollingDieNumber > winningPosition)
-                                {
-                                    Console.WriteLine($"no is getting greater than 100 for player {playersCount + 1}");
-                                    continue;
-                                }
-                                else
                                     currentPosition[playersCount] = currentPosition[playersCount] + RollingDieNumber;
-                                break;
+                                    break;
                             case SNAKE:
                                 if (currentPosition[playersCount] >= RollingDieNumber)
                                 {
@@ -64,7 +65,11 @@ namespace SnakeAndLadder
                             break;
                         }
                     } while (checkingThePosition == LADDER);
-                if (playersCount < noOfPlayers - 1)
+                if (currentPosition[playersCount] == winningPosition)
+                {
+                    break;
+                }
+                    if (playersCount < noOfPlayers - 1)
                     playersCount += 1;
                 else
                     playersCount = 0;
